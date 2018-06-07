@@ -9,11 +9,11 @@ const PORT = 3000;
 
 const USER = {
     id: "1",
-    username: "John",
-    password: "Wick"
+    username: "Lucas",
+    password: "Grenier"
 };
 
-const privatekey = "Kolok";
+const privatekey = "ma_cle_priv";
 
 function checkAuth(req, res, next) {
     const username = req.query.username;
@@ -21,7 +21,7 @@ function checkAuth(req, res, next) {
     if (username != USER.username || password != USER.password) {
         res.sendStatus(401);
     } else {
-        console.log("Authed");
+        console.log("OK ");
         next();
     }
 }
@@ -29,9 +29,7 @@ function checkAuth(req, res, next) {
 function hash(data) {
     console.log(data);
     return crypto
-        .createHmac("sha256", "secret")
-        .update(data)
-        .digest("hex");
+        .createHmac("sha256", "secret").update(data).digest("hex");
 }
 
 function cookieHandling(req, res, next) {
